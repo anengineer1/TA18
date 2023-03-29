@@ -6,8 +6,6 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import javax.swing.JOptionPane;
 
@@ -16,7 +14,6 @@ public class MySqlConnectionHandler {
 	public static Connection initConnection(String ip, String puerto, String usuario, String contrasena) {
 
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			String prefix = "jdbc:mysql://";
 			String sufix = "?useTimezone=true&serverTimezone=UTC";
@@ -27,7 +24,7 @@ public class MySqlConnectionHandler {
 			return conexion;
 		} catch (SQLException | ClassNotFoundException ex) {
 			System.out.println("No se ha podido conectar con mi base de datos");
-			System.out.println(ex);
+			System.out.println(ex.getMessage());
 			return null;
 		}
 	}
@@ -39,7 +36,7 @@ public class MySqlConnectionHandler {
 			return conexion;
 		} catch (SQLException e) {
 			System.out.println("No se ha podido cerrar base de datos");
-			// Logger.getLogger(SQLException.class.getName()).log(Level.SEVERE, null, e);
+			System.out.println(e.getMessage());
 			return conexion;
 		}
 	}
@@ -50,25 +47,12 @@ public class MySqlConnectionHandler {
 			String Query = "CREATE DATABASE IF NOT EXISTS " + name + ";";
 			Statement st = conexion.createStatement();
 			st.executeUpdate(Query);
-			// Reinicio de la conexion con el nombre de la base de datos por parametros
-			// closeConnection(conexion);
-			// MySQLConnection("root","",name);
-			JOptionPane.showMessageDialog(null, "se ha creado la base de datos" + name + "de forma exitosa", Query, 0);
+			System.out.println("se ha creado la base de datos " + name + " de forma exitosa");
 		} catch (SQLException ex) {
 			System.out.println("No se ha podido crear la base de datos");
-			// Logger.getLogger(SQLException.class.getName()).log(Level.SEVERE, null, e);
+			System.out.println(ex.getMessage());
 		}
 
-	}
-
-	public static void executeQuery(String Query, Connection con_handler) {
-		try {
-			Statement st = con_handler.createStatement();
-			st.executeUpdate(Query);
-		} catch (Exception e) {
-			System.out.println("Problema escribiendo query");
-			// Logger.getLogger(SQLException.class.getName()).log(Level.SEVERE, null, e);
-		}
 	}
 
 	public static void createTable(String db, String name, String query, Connection conexion) {

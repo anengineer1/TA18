@@ -56,6 +56,16 @@ public void createDB(String name,Connection conexion){
     
     
     }
+    public static void executeQuery(String Query, Connection con_handler) {
+		try {
+			Statement st = con_handler.createStatement();
+			st.executeUpdate(Query);
+		} catch (Exception e) {
+			System.out.println("Problema escribiendo query");
+			 Logger.getLogger(SQLException.class.getName()).log(Level.SEVERE, null, e);
+		}
+	}
+
     
 public void deleteRecord(String table_name,String ID,Connection conexion) {
     

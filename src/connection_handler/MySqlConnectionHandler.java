@@ -101,17 +101,28 @@ public class MySqlConnectionHandler {
 			String Querydb = "USE" + db + ";";
 			Statement stdb = conexion.createStatement();
 			stdb.executeUpdate(Querydb);
-
-			String Query = "SLECT * FROM" + table_name;
+			String Query = "SELECT * FROM" + table_name;
 			Statement st = conexion.createStatement();
 			java.sql.ResultSet resultSet;
 			resultSet = st.executeQuery(Query);
-			while (resultSet.next()) {
-				System.out.println("ID:" + resultSet.getString("ID") + "" + "Nombre:" + resultSet.getString("Nombre")
-						+ "" + "Apellido:" + resultSet.getString("Apellido") + "" + "Edad:"
-						+ resultSet.getString("edad") + "" + "sexo" + resultSet.getString("sexo"));
 
-			}
+			while (resultSet.next()) {
+					if(resultSet.nextLine()){
+					System.out.println(resultSet.getString);
+					}
+					if(resultSet.nextInt()){
+					System.out.println(resultSet.getInteger);
+					}
+					if(resultSet.nextDouble()){
+					System.out.println(resultSet.getDouble);
+					}
+					if(resultSet.nextFloater()){
+					System.out.println(resultSet.getFloater);
+					}
+					if(resultSet.nextChar()){
+					System.out.println(resultSet.getChar);
+					}
+				}
 		} catch (SQLException ex) {
 
 			System.out.println(ex.getMessage());

@@ -49,21 +49,21 @@ public class Ejercicio_5_App {
 		datos_empleados[0] = "'23456789', 'García Palancas', null, 0";
 		datos_empleados[1] = "'98764322', 'Naruto Palancas', '23456789', 1";
 		datos_empleados[2] = "'23456666', 'Saitama One', '23456789', 2";
-		datos_empleados[3] = "'11111111', 'Remiendos Piedra', ''23456789', 3";
+		datos_empleados[3] = "'11111111', 'Remiendos Piedra', '23456789', 3";
 		datos_empleados[4] = "'44444444', 'Valentino Remiendos', '23456789', 4";
 		for (int i = 0; i < datos_empleados.length; i++) {
 			MySqlConnectionHandler.insertData(dbase_name, tabla_directores, datos_empleados[i], con_handler);
 		}
-		
+
 		// print despachos
 		System.out.println("Tabla " + tabla_despachos);
 		MySqlConnectionHandler.printValues(dbase_name, tabla_despachos, con_handler);
-		
+
 		// print directores
 		System.out.println("Tabla " + tabla_directores);
 		MySqlConnectionHandler.printValues(dbase_name, tabla_directores, con_handler);
-		
-		con_handler = MySqlConnectionHandler.closeConnection(con_handler);
+
+		MySqlConnectionHandler.closeConnection(con_handler);
 
 	}
 

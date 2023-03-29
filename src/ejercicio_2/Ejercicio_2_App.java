@@ -61,7 +61,9 @@ public class Ejercicio_2_App {
 		// print tabla empleados
 		System.out.println("Tabla " + tabla_empleados);
 		MySqlConnectionHandler.printValues(dbase_name, tabla_empleados, con_handler);
-		con_handler = MySqlConnectionHandler.closeConnection(con_handler);
+		
+		// Cerrar conexion
+		MySqlConnectionHandler.closeConnection(con_handler);
 	}
 
 }

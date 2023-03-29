@@ -107,7 +107,7 @@ public class Ejercicio_8_App {
 		System.out.println("Tabla " + tabla_venta);
 		MySqlConnectionHandler.printValues(dbase_name, tabla_venta, con_handler);
 
-		con_handler = MySqlConnectionHandler.closeConnection(con_handler);
+		MySqlConnectionHandler.closeConnection(con_handler);
 
 	}
 

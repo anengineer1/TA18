@@ -60,7 +60,7 @@ public class MySqlConnectionHandler {
 			String Querydb = "USE " + db + ";";
 			Statement stdb = conexion.createStatement();
 			stdb.executeUpdate(Querydb);
-			String QueryComp = "CREATE TABLE " + name + "(" + query + ");";
+			String QueryComp = "CREATE TABLE IF NOT EXISTS " + name + "(" + query + ");";
 			Statement st = conexion.createStatement();
 			st.executeUpdate(QueryComp);
 			System.out.println("Tabla creada con exito!");

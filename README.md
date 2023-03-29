@@ -1,2 +1,2 @@
 # TA18
-Bases de datos desde Java
+Bases de datos desde Java.

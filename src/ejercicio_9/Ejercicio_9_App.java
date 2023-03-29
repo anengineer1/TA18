@@ -60,8 +60,44 @@ public class Ejercicio_9_App {
 				+ "FOREIGN KEY(dni_investigador) REFERENCES investigadores(dni) "
 				+ "ON DELETE CASCADE ON UPDATE CASCADE, " + "KEY(numSerie_equipo), "
 				+ "FOREIGN KEY(numSerie_equipo) REFERENCES equipos(numSerie) " + "ON DELETE CASCADE ON UPDATE CASCADE";
-		//Creamos la tabla Reserva
+		// Creamos la tabla Reserva
 		MySqlConnectionHandler.createTable(dbase_name, tablaReserva, queryReserva, con_handler);
+
+		// Inserciones en la tabla Facultad
+		String[] datos_Facultad = new String[5];
+		datos_Facultad[0] = "1, 'Medicina'";
+		datos_Facultad[1] = "2, 'Química'";
+		datos_Facultad[2] = "3, 'Física'";
+		datos_Facultad[3] = "4, 'Biología'";
+		datos_Facultad[4] = "5, 'MicroBiologia'";
+		for (int i = 0; i < datos_Facultad.length; i++) {
+			MySqlConnectionHandler.insertData(dbase_name, tablaFacultad, datos_Facultad[i], con_handler);
+		}
+
+		// Inserciones en la tabla Investigadores
+		String[] datos_Investigadores = new String[5];
+		datos_Investigadores[0] = "'4788597C', 'Palmira Romia', 4";
+		datos_Investigadores[1] = "'7445589D', 'Francisco Parra', 3";
+		datos_Investigadores[2] = "'1457878T', 'Alejandro Jimenez', 1";
+		datos_Investigadores[3] = "'4789645S', 'Jose Marin', 5";
+		datos_Investigadores[4] = "'1478889A', 'Emma Stone', 2";
+		for (int i = 0; i < datos_Investigadores.length; i++) {
+			MySqlConnectionHandler.insertData(dbase_name, tablaInvestigadores, datos_Investigadores[i], con_handler);
+		}
+
+		// Inserciones en la tabla Equipos
+		String[] datos_Equipos = new String[5];
+		datos_Equipos[0] = "'ADR4', 'Alfa', 1";
+		datos_Equipos[1] = "'DER2', 'Beta', 4";
+		datos_Equipos[2] = "'DFT6', 'Gamma', 2";
+		datos_Equipos[3] = "'GRE1', 'Delta', 5";
+		datos_Equipos[4] = "'RCG9', 'Epsilon', 4";
+		for (int i = 0; i < datos_Equipos.length; i++) {
+			MySqlConnectionHandler.insertData(dbase_name, tablaEquipos, datos_Equipos[i], con_handler);
+		}
+		
+		//Inserciones en la tabla Reserva
+		String[] datos_Reserva = new String[5];
 
 	}
 

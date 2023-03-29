@@ -26,7 +26,8 @@ public class MySqlConnectionHandler {
 			System.out.println(ex);
 			return null;
 		}
-	}
+	
+    }
 public static Connection closeConnection(Connection conexion) {
 		try {
 			conexion.close();

@@ -120,16 +120,15 @@ public class MySqlConnectionHandler {
 		}
 	}
 
-	public static void insertData(String db, String table_name, String name, String lastname, String age, String gender,
-			Connection conexion) {
+	public static void insertData(String db, String table_name, String query, Connection conexion) {
 
 		try {
-			String Querydb = "USE" + db + ";";
+			String Querydb = "USE " + db + ";";
 			Statement stdb = conexion.createStatement();
 			stdb.executeUpdate(Querydb);
 
-			String Query = "Insert Into" + table_name + "(Nombre,Apellidos,Edas,Sexo) value(" + "\"" + name + "\","
-					+ "\"" + lastname + "\"," + "\"" + age + "\"," + gender + "\");";
+			String Query = "Insert Into " + table_name + " VALUES " + "(" + query + ");";
+			System.out.println(Query);
 			Statement st = conexion.createStatement();
 			st.executeUpdate(Query);
 			System.out.println("Datos almacenados correctos");

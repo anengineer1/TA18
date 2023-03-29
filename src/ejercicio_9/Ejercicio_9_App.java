@@ -56,7 +56,7 @@ public class Ejercicio_9_App {
 		// Creamos las variables que tendrá la tabla Reserva
 		String tablaReserva = "reserva";
 		String queryReserva = "dni_investigador VARCHAR(8), " + "numSerie_equipo CHAR(4), " + "comienzo DATETIME, "
-				+ "fin DATETIME " + "PRIMARY KEY(dni_investigador, numSerie_equipo), " + "KEY(dni_investigador), "
+				+ "fin DATETIME, " + "PRIMARY KEY(dni_investigador, numSerie_equipo), " + "KEY(dni_investigador), "
 				+ "FOREIGN KEY(dni_investigador) REFERENCES investigadores(dni) "
 				+ "ON DELETE CASCADE ON UPDATE CASCADE, " + "KEY(numSerie_equipo), "
 				+ "FOREIGN KEY(numSerie_equipo) REFERENCES equipos(numSerie) " + "ON DELETE CASCADE ON UPDATE CASCADE";

@@ -56,6 +56,20 @@ public void createDB(String name,Connection conexion){
     
     
     }
+public static void createTable(String db, String name, String query, Connection conexion) {
+	try {
+		String Querydb = "USE " + db + ";";
+		Statement stdb = conexion.createStatement();
+		stdb.executeUpdate(Querydb);		
+		String QueryComp = "CREATE TABLE " + name + query + ";";
+		Statement st = conexion.createStatement();
+		st.executeUpdate(QueryComp);
+		System.out.println("Tabla creada con exito!");
+	}catch (SQLException ex) {
+		System.out.println(ex.getMessage());
+		System.out.println("Error creando la tabla");
+	}
+}
     
 public void deleteRecord(String table_name,String ID,Connection conexion) {
     

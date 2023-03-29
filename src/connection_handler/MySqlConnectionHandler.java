@@ -103,6 +103,9 @@ public class MySqlConnectionHandler {
 			String Querydb = "USE " + db + ";";
 			Statement stdb = conexion.createStatement();
 			stdb.executeUpdate(Querydb);
+<<<<<<< Updated upstream
+
+>>>>>>> Stashed changes
 
 			String query = "SELECT * FROM " + table_name;
 			Statement st = conexion.createStatement();

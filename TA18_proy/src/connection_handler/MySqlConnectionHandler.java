@@ -35,7 +35,7 @@ public static Connection closeConnection(Connection conexion) {
 			return conexion;
 		} catch (SQLException e) {
 			System.out.println("No se ha podido cerrar base de datos");
-			 Logger.getLogger(MySQL.class.getName()).log(Level.SEVERE, null, e);
+		//	 Logger.getLogger(MySQL.class.getName()).log(Level.SEVERE, null, e);
 			return conexion;
 		}
 	}
@@ -48,10 +48,10 @@ public void createDB(String name,Connection conexion){
     st.executeUpdate(Query);
     //Reinicio de la conexion con el nombre de la base de datos por parametros
     closeConnection(conexion);
-    MySQLConnection("root","",name);
+//    MySQLConnection("root","",name);
     JOptionPane.showMessageDialog(null, "se ha creado la base de datos"+name+"de forma exitosa", Query, 0);
     }catch(SQLException ex){
-        Logger.getLogger(MySQL.class.getName()).log(Level.SEVERE, null, ex);
+  //      Logger.getLogger(MySQL.class.getName()).log(Level.SEVERE, null, ex);
     }
     
     

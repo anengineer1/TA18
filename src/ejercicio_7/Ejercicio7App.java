@@ -24,7 +24,7 @@ public class Ejercicio7App {
         // cientificos
 		nombre_tabla = "cientificos";
 		String query_cientificos = "DNI varchar(8) PRIMARY KEY," + "NomApels NVARCHAR(100) NOT NULL,";
-		MySqlConnectionHandler.createTable(dbase_name, nombre_tabla, query, con_handler);
+		MySqlConnectionHandler.createTable(dbase_name, nombre_tabla, query_cientificos, con_handler);
 
         nombre_tabla = "asignado_a";
 		String query = "cientifico varchar(8) FOREIGN KEY (cientifico) REFERENCES cientificos (DNI)"+"proyecto char(4) FOREIGN KEY (proyecto) REFERENCES proyecto (id)";
@@ -49,7 +49,7 @@ public class Ejercicio7App {
 		datos_proyecto[2] = "'2', 'Invetigacion 3','70'";
 		datos_proyecto[3] = "'3', 'Investigacion 4','60'";
 		datos_proyecto[4] = "'4', 'Investigacion 5','50'";
-		for (int i = 0; i < datos_empleados.length; i++) {
+		for (int i = 0; i < datos_proyecto.length; i++) {
 			MySqlConnectionHandler.insertData(dbase_name, nombre_tabla, datos_proyecto[i], con_handler);
 		}
 		MySqlConnectionHandler.printValues(dbase_name, nombre_tabla, con_handler);

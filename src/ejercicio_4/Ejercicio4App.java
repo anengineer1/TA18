@@ -47,7 +47,7 @@ public class Ejercicio4App {
 		datos_peliculas[2] = "'2', 'LG','2";
 		datos_peliculas[3] = "'3', 'Motorola','3";
 		datos_peliculas[4] = "'4', 'Sound','1";
-		for (int i = 0; i < datos_empleados.length; i++) {
+		for (int i = 0; i < datos_peliculas.length; i++) {
 			MySqlConnectionHandler.insertData(dbase_name, nombre_tabla, datos_peliculas[i], con_handler);
 		}
 		MySqlConnectionHandler.printValues(dbase_name, nombre_tabla, con_handler);

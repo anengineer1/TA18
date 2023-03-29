@@ -96,7 +96,7 @@ public class MySqlConnectionHandler {
 		}
 	}
 
-	public static void getValues(String db, String table_name, Connection conexion) {
+	public static void getValues(String db, String table_name, Connection conexion,String query) {
 		try {
 			String Querydb = "USE" + db + ";";
 			Statement stdb = conexion.createStatement();
@@ -105,24 +105,25 @@ public class MySqlConnectionHandler {
 			Statement st = conexion.createStatement();
 			java.sql.ResultSet resultSet;
 			resultSet = st.executeQuery(Query);
-
-			while (resultSet.next()) {
+			ResultSet  sourceResultSet = connection.createStatement().executeQuery(query);
+			while (sourceResultSet.next()) {
 					if(resultSet.nextLine()){
-					System.out.println(resultSet.getString);
+					System.out.println(sourceResultSet.getString());
 					}
-					if(resultSet.nextInt()){
-					System.out.println(resultSet.getInteger);
+					if(sourceResultSet.nextInt()){
+					System.out.println(sourceResultSet.getInteger());
 					}
-					if(resultSet.nextDouble()){
-					System.out.println(resultSet.getDouble);
+					if(sourceResultSet.nextDouble()){
+					System.out.println(sourceResultSet.getDouble());
 					}
-					if(resultSet.nextFloater()){
-					System.out.println(resultSet.getFloater);
+					if(sourceResultSet.nextFloater()){
+					System.out.println(sourceResultSet.getFloater());
 					}
-					if(resultSet.nextChar()){
-					System.out.println(resultSet.getChar);
+					if(sourceResultSet.nextChar()){
+					System.out.println(sourceResultSet.getChar());
 					}
 				}
+
 		} catch (SQLException ex) {
 
 			System.out.println(ex.getMessage());
@@ -137,7 +138,6 @@ public class MySqlConnectionHandler {
 			String Querydb = "USE " + db + ";";
 			Statement stdb = conexion.createStatement();
 			stdb.executeUpdate(Querydb);
-
 			String Query = "Insert Into " + table_name + " VALUES " + "(" + query + ");";
 			System.out.println(Query);
 			Statement st = conexion.createStatement();
@@ -147,6 +147,5 @@ public class MySqlConnectionHandler {
 			System.out.println(ex.getMessage());
 			JOptionPane.showMessageDialog(null, "Error en el almacenamiento");
 		}
-
 	}
 }

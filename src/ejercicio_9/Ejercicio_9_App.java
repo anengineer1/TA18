@@ -91,13 +91,31 @@ public class Ejercicio_9_App {
 		datos_Equipos[1] = "'DER2', 'Beta', 4";
 		datos_Equipos[2] = "'DFT6', 'Gamma', 2";
 		datos_Equipos[3] = "'GRE1', 'Delta', 5";
-		datos_Equipos[4] = "'RCG9', 'Epsilon', 4";
+		datos_Equipos[4] = "'RCG9', 'Epsilon', 3";
 		for (int i = 0; i < datos_Equipos.length; i++) {
 			MySqlConnectionHandler.insertData(dbase_name, tablaEquipos, datos_Equipos[i], con_handler);
 		}
 		
 		//Inserciones en la tabla Reserva
 		String[] datos_Reserva = new String[5];
+		datos_Reserva[0] = "'4788597C', 'DER2', '2022-11-10', '2023-03-30'";
+		datos_Reserva[1] = "'7445589D', 'RCG9', '2021-01-05', '2021-02-20'";
+		datos_Reserva[2] = "'1457878T', 'ADR4', '2022-05-10', '2023-01-20'";
+		datos_Reserva[3] = "'4789645S', 'GRE1', '2019-10-04', '2019-11-10'";
+		datos_Reserva[4] = "'1478889A', 'DFT6', '2018-05-12', '2019-02-15'";
+		for(int i = 0; i<datos_Reserva.length;i++) {
+			MySqlConnectionHandler.insertData(dbase_name, tablaReserva, datos_Reserva[i], con_handler);
+		}
+		
+		//Imprimimos las tablas
+		System.out.println("Tabla " + tablaFacultad);
+		MySqlConnectionHandler.printValues(dbase_name, tablaFacultad, con_handler);
+		System.out.println("Tabla " + tablaInvestigadores);
+		MySqlConnectionHandler.printValues(dbase_name, tablaInvestigadores, con_handler);
+		System.out.println("Tabla " + tablaEquipos);
+		MySqlConnectionHandler.printValues(dbase_name, tablaEquipos, con_handler);
+		System.out.println("Tabla " + tablaReserva);
+		MySqlConnectionHandler.printValues(dbase_name, tablaReserva, con_handler);
 
 	}
 

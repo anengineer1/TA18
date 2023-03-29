@@ -2,6 +2,8 @@ package connection_handler;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
@@ -45,7 +47,7 @@ public class MySqlConnectionHandler {
 	public static void createDB(String name, Connection conexion) {
 		try {
 			// Creacion y ejecucion de consulta a la base de datos
-			String Query = "CREATE DATABASE IF NOT EXISTS " + name +";";
+			String Query = "CREATE DATABASE IF NOT EXISTS " + name + ";";
 			Statement st = conexion.createStatement();
 			st.executeUpdate(Query);
 			// Reinicio de la conexion con el nombre de la base de datos por parametros
@@ -58,7 +60,7 @@ public class MySqlConnectionHandler {
 		}
 
 	}
-	
+
 	public static void executeQuery(String Query, Connection con_handler) {
 		try {
 			Statement st = con_handler.createStatement();
@@ -96,34 +98,24 @@ public class MySqlConnectionHandler {
 		}
 	}
 
-	public static void getValues(String db, String table_name, Connection conexion,String query) {
+	public static void printValues(String db, String table_name, Connection conexion) {
 		try {
-			String Querydb = "USE" + db + ";";
+			String Querydb = "USE " + db + ";";
 			Statement stdb = conexion.createStatement();
 			stdb.executeUpdate(Querydb);
-			String Query = "SELECT * FROM" + table_name;
-			Statement st = conexion.createStatement();
-			java.sql.ResultSet resultSet;
-			resultSet = st.executeQuery(Query);
-			ResultSet  sourceResultSet = connection.createStatement().executeQuery(query);
-			while (sourceResultSet.next()) {
-					if(resultSet.nextLine()){
-					System.out.println(sourceResultSet.getString());
-					}
-					if(sourceResultSet.nextInt()){
-					System.out.println(sourceResultSet.getInteger());
-					}
-					if(sourceResultSet.nextDouble()){
-					System.out.println(sourceResultSet.getDouble());
-					}
-					if(sourceResultSet.nextFloater()){
-					System.out.println(sourceResultSet.getFloater());
-					}
-					if(sourceResultSet.nextChar()){
-					System.out.println(sourceResultSet.getChar());
-					}
-				}
 
+			String query = "SELECT * FROM " + table_name;
+			Statement st = conexion.createStatement();
+			ResultSet rs = st.executeQuery(query);
+			ResultSetMetaData rsmd = rs.getMetaData();
+			int columnCount = rsmd.getColumnCount();
+			while (rs.next()) {
+				for (int i = 1; i <= columnCount; i++) {
+					System.out.print(rs.getString(i) + "\t");
+				}
+				System.out.println();
+			}
+			rs.close();
 		} catch (SQLException ex) {
 
 			System.out.println(ex.getMessage());

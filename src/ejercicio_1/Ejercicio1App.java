@@ -1,30 +1,29 @@
 package ejercicio_1;
+
 import java.sql.Connection;
 import connection_handler.MySqlConnectionHandler;
-import java.sql.Connection;
 import javax.swing.JOptionPane;
 
-import connection_handler.MySqlConnectionHandler;
 public class Ejercicio1App {
-    public static void main(String[] args) {
-    String ip = JOptionPane.showInputDialog("Introduzca ip");
-    String puerto = JOptionPane.showInputDialog("Introduzca puerto");
-    String usuario = JOptionPane.showInputDialog("Introduzca nombre de usuario");
-    String contrasena = JOptionPane.showInputDialog("Introduzca contrasena");
+	public static void main(String[] args) {
+		String ip = JOptionPane.showInputDialog("Introduzca ip");
+		String puerto = JOptionPane.showInputDialog("Introduzca puerto");
+		String usuario = JOptionPane.showInputDialog("Introduzca nombre de usuario");
+		String contrasena = JOptionPane.showInputDialog("Introduzca contrasena");
 
-    Connection con_handler = MySqlConnectionHandler.initConnection(ip, puerto, usuario, contrasena);
-    String dbase_name = "TA18_Ejercicio_1";
+		Connection con_handler = MySqlConnectionHandler.initConnection(ip, puerto, usuario, contrasena);
+		String dbase_name = "TA18_Ejercicio_1";
 
-    // create database
-    MySqlConnectionHandler.createDB(dbase_name, con_handler);
+		// create database
+		MySqlConnectionHandler.createDB(dbase_name, con_handler);
 
-	String nombre_tabla = "fabricantes";
+		String nombre_tabla = "fabricantes";
 		String query_departamentos = "codigo INT PRIMARY KEY," + "nombre NVARCHAR(100) NOT NULL,";
 		MySqlConnectionHandler.createTable(dbase_name, nombre_tabla, query_departamentos, con_handler);
 // articulos
 		nombre_tabla = "articulos";
 		String query = "codigo int PRIMARY KEY," + "nombre NVARCHAR(100) NOT NULL," + "precio int NOT NULL,"
-				+"FOREIGN KEY (fabricante) REFERENCES fabricantes (codigo)";
+				+ "FOREIGN KEY (fabricante) REFERENCES fabricantes (codigo)";
 		MySqlConnectionHandler.createTable(dbase_name, nombre_tabla, query, con_handler);
 
 		// Insert articulos
@@ -54,4 +53,3 @@ public class Ejercicio1App {
 		con_handler = MySqlConnectionHandler.closeConnection(con_handler);
 	}
 }
-
